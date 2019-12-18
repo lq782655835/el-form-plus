@@ -27,7 +27,7 @@
       </template>
       <!-- 普通输入框 -->
       <el-input
-        v-if="item.type === 'input' || item.type === 'password'"
+        v-if="item.type === 'input'"
         v-model="formModel[item.value]"
         :type="item.type"
         :disabled="item.disabled"
@@ -69,11 +69,11 @@
       />
       <!-- 单选框组 -->
       <u-el-radio-group
-        v-if="item.type === 'radio-group'"
-        v-model="formModel[item.value]"
-        :options="item.options"
-        :disabled="item.disabled"
-        @change="handleClick(item.event, formModel[item.value])"
+          v-if="item.type === 'radio-group'"
+          v-model="formModel[item.value]"
+          :options="item.options"
+          :disabled="item.disabled"
+          @change="handleClick(item.event, formModel[item.value])"
       />
       <!-- 日期选择框 -->
       <el-date-picker
@@ -86,7 +86,21 @@
         :placeholder="getPlaceholder(item)"
         @focus="handleClick(item.event)"
       />
+      <!-- 动态组件 -->
+      <template v-if="['el-','dynamic-'].some(prefix => item.type.startsWith(prefix))">
+        <component
+          :is="item.type"
+          v-model="formModel[item.value]"
+          :options="item.options"
+          :disabled="item.disabled"
+          :filterable="item.filterable"
+          :clearable="item.clearable"
+          :placeholder="getPlaceholder(item)"
+          @change="handleClick(item.event, formModel[item.value])"
+        />
+      </template>
     </el-form-item>
+    <slot></slot>
   </el-form>
 </template>
 

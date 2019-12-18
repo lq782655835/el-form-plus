@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "u-el-select",
+  name: "u-radio-group",
   props: {
     value: String,
     options: [Array, Object]

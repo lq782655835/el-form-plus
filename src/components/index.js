@@ -1,5 +1,10 @@
 import Component from "./el-form-plus.vue";
 
+export { default as UElInputNumber } from "./el-component-warp/u-el-input-number.vue";
+export { default as UElRadioGroup } from "./el-component-warp/u-el-radio-group.vue";
+export { default as UElSelect } from "./el-component-warp/u-el-select.vue";
+export { default as UElTooltip } from "./el-component-warp/u-el-tooltip.vue";
+
 function install(Vue) {
   if (install.installed) return;
   install.installed = true;

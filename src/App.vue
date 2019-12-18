@@ -6,8 +6,6 @@
       :fieldList="formConfig.fieldList"
       size="small"
     >
-      /** * 支持自定义form-item内容 *
-      把组件当作参数，传递给el-form-plus组件进行渲染 */
       <template #item-ssh>
         <el-switch
           v-model="form['ssh']"
@@ -93,7 +91,8 @@ export default {
         department: "yanxuan",
         manager: "",
         customImageCheck: false,
-        ssh: false
+        ssh: false,
+        switch: false
       }
     };
   },
@@ -161,6 +160,11 @@ export default {
             required: true,
             tooltip:
               "在上传机器的ssh公钥并开启Notebook的ssh服务后，可以使用该机器远程终端访问该Notebook"
+          },
+          {
+            label: '动态组件',
+            type: 'el-switch',
+            value: 'switch'
           }
         ]
       };

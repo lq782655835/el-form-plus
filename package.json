@@ -1,6 +1,6 @@
 {
   "name": "@springleo/el-form-plus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/el-form-plus.common.js",
   "license": "MIT",
   "keywords": [
@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --dest demo",
-    "publish": "npm run build && node ./scripts/demo.js",
+    "build:publish": "vue-cli-service build --dest demo && node ./scripts/demo.js",
     "build:bundle": "vue-cli-service build --target lib --name el-form-plus ./src/components/index.js",
     "lint": "vue-cli-service lint",
     "format": "prettier --write './**/*.{js,ts,vue,json}'"

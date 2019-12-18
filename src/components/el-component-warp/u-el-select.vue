@@ -52,7 +52,7 @@ export default {
     value(val) {
       this.svalue = val;
     },
-    options(val) {
+    options() {
       this.getSelectOptions();
     }
   },

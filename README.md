@@ -48,6 +48,8 @@ you can get preview by above code：
 
 ### el-form-plus Props
 
+基于el-form，所以Props支持el-form上所有props以及事件event。
+
 Prop | Type | Default | Description
 --- | --- | --- | ---
 refObj | Object |  | 返回form引用，如果手动validate需要用到
@@ -61,17 +63,17 @@ labelPosition | string | left | el-form的labelPosition
 
 Attr | Type | Default | Description
 --- | --- | --- | ---
-type | String |  | 必需。渲染的组件类型，目前支持input、textarea、select、radio-group、input-number、date、slot
+type | String |  | 必需。渲染的组件类型，支持input、textarea、select、radio-group、input-number、date、slot。同时支持动态组件，为约束完全的动态性，动态组件的命名请以`el-`或`dynamic-`开头。
 value | String |   | 必需。值字段，v-model绑定的值为this.data[value]
 label | String |   | form-item标题
 tooltip | String |  | 标题附近的提示
 disabled | Boolean |  false | 是否禁用
 placeholder | String |  | 组件placeholder提示，默认input是‘请输入label’，select默认是‘请选择label’
-options | Array |   | 针对select和radio-group组件，配置options list
 required | Boolean |  false | 校验规则：是否必须
 pattern | Regex |   | 校验规则：满足正则
 validator | function |   | 校验规则：自定义函数，最灵活
 rules | Array\<Rule> |   | 以上三种attr校验属于快速校验规则，使用rules可一次性定义form-item的规则
+options | Array |   | 针对select和radio-group组件，配置options list
 
 > 由于type=slot用到v-slot作用域插槽，vue版本需要v2.6+
 
