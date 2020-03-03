@@ -134,6 +134,7 @@ export default {
      * required: 校验规则：是否必须
      * pattern：校验规则：满足正则
      * validator：校验规则：自定义函数，最灵活
+     * rules: 以上三种attr校验属于快速校验规则，使用rules可一次性定义form-item的规则
      */
     fieldList: { type: Array },
     // 验证规则：相对于filedList快速规则，这里设置的rules具有最高优先级
@@ -160,7 +161,8 @@ export default {
             type,
             required,
             pattern,
-            validator
+            validator,
+            rules: itemRules
           } = fieldConfig;
           let trigger = "blur";
           rules[value] = [];
@@ -178,6 +180,9 @@ export default {
           }
           if (validator) {
             rules[value].push({ validator, trigger });
+          }
+          if (itemRules) {
+            rules[value] = rules[value].concat(itemRules)
           }
           return rules;
         }, {});
@@ -198,16 +203,14 @@ export default {
     this.$emit("update:refObj", this.$refs.form);
   },
   methods: {
-    // 得到placeholder的显示
     getPlaceholder({ type, label, placeholder }) {
       if (placeholder) return placeholder;
 
-      if (type === "input" || type === "textarea") {
-        placeholder = "请输入" + label;
-      } else if (type === "select" || type === "time" || type === "date") {
-        placeholder = "请选择" + label;
-      } else {
-        placeholder = label;
+      if (['input', 'textarea'].includes(type)) {
+        return "请输入" + label;
+      }
+      if (['select', 'time', 'date'].includes(type)) {
+        return "请选择" + label;
       }
       return placeholder;
     },
